@@ -14,6 +14,7 @@ const studentSchema = new Schema({
   status: { type: mongoose.SchemaTypes.String, required: true },
   allergy: { type: mongoose.SchemaTypes.Array, required: true },
   note: { type: mongoose.SchemaTypes.String, required: true },
+  _group_id: { type: mongoose.SchemaTypes.ObjectId, ref: 'group' },
 });
 
 const collectionName = 'student';

@@ -2,11 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { PORT } = require('./config/config');
-const studentRouter = require('./routes/student.route');
-const teacherRouter = require('./routes/teacher.route');
-const classroomRouter = require('./routes/classroom.route');
-const groupRouter = require('./routes/group.route');
-const lessonRouter = require('./routes/lesson.route');
+const studentRouter = require('./routes/student/index');
+const teacherRouter = require('./routes/teacher/index');
+const classroomRouter = require('./routes/classroom/index');
+const groupRouter = require('./routes/group/index');
+const lessonRouter = require('./routes/lesson/index');
 
 const app = express();
 app.use(cors());

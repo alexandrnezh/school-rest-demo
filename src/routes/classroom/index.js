@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const parser = require('body-parser').urlencoded({ extended: true });
 
-const classroomController = require('../controllers/classroom.controller');
+const classroomController = require('../../controllers/classroom.controller');
 
 router.get('/', classroomController.getAll);
 router.get('/:id', classroomController.get);

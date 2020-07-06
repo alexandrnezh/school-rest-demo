@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const parser = require('body-parser').urlencoded({ extended: true });
 
-const groupController = require('../controllers/group.controller');
+const groupController = require('../../controllers/group.controller');
 
 router.get('/', groupController.getAll);
 router.get('/:id', groupController.get);

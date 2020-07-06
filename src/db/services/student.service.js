@@ -1,8 +1,14 @@
 const Student = require('../../models/student.model');
 
-exports.getAll = async () => {
+exports.getAll = async (status, lastName, postalCode, phoneNumber, groupId) => {
   try {
-    const res = await Student.find().populate('_group_id');
+    const res = await Student.find({
+      status,
+      last_name: lastName,
+      postal_code: postalCode,
+      phone_number: phoneNumber,
+      _group_id: groupId,
+    }).populate('_group_id');
     return res;
   } catch (err) {
     console.log(err);

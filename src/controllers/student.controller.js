@@ -2,7 +2,14 @@ const error = require('http-errors');
 const StudentService = require('../db/services/student.service');
 
 exports.getAll = async (req, resp) => {
-  const res = await StudentService.getAll();
+  const { status, lastName, postalCode, phoneNumber, groupId } = req.query;
+  const res = await StudentService.getAll(
+    status,
+    lastName,
+    postalCode,
+    phoneNumber,
+    groupId,
+  );
   if (!res) resp.status(400).send(new error.NotFound());
   resp.status(200).send(res);
 };

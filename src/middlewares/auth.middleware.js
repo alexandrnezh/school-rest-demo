@@ -11,8 +11,9 @@ exports.verifyToken = (req, resp, next) => {
       }
       return next();
     });
+  } else {
+    return resp.status(401).send({ code: 401, message: 'Unauthorized' });
   }
-  return resp.status(401).send({ code: 401, message: 'Unauthorized' });
 };
 
 exports.generateToken = (req, resp) => {

@@ -1,4 +1,3 @@
-const error = require('http-errors');
 const classroomService = require('../db/services/classroom.service');
 
 exports.getAll = async (req, resp) => {
@@ -19,7 +18,7 @@ exports.get = async (req, resp) => {
 
 exports.create = async (req, resp) => {
   const res = await classroomService.create(req.body);
-  if (!res) return resp.status(400).send(new error.BadRequest());
+  if (!res) return resp.status(400).send({ code: 400, message: 'Bad Request' });
   return resp.status(201).send(res);
 };
 
@@ -27,7 +26,7 @@ exports.delete = async (req, resp) => {
   const { id } = req.params;
 
   const res = await classroomService.delete(id);
-  if (!res) return resp.status(400).send(new error.BadRequest());
+  if (!res) return resp.status(400).send({ code: 400, message: 'Bad Request' });
   return resp.status(204).send();
 };
 
@@ -35,6 +34,6 @@ exports.update = async (req, resp) => {
   const { id } = req.params;
 
   const res = await classroomService.update(id, req.body);
-  if (!res) return resp.status(400).send(new error.BadRequest());
+  if (!res) return resp.status(400).send({ code: 400, message: 'Bad Request' });
   return resp.status(200).send(res);
 };

@@ -1,12 +1,13 @@
 const router = require('express').Router();
 const parser = require('body-parser').urlencoded({ extended: true });
+const { verifyToken } = require('../../middlewares/auth.middleware');
 
 const studentController = require('../../controllers/student.controller');
 
-router.get('/', studentController.getAll);
-router.get('/:id', studentController.get);
-router.post('/', parser, studentController.create);
-router.put('/:id', parser, studentController.update);
-router.delete('/:id', studentController.delete);
+router.get('/', verifyToken, studentController.getAll);
+router.get('/:id', verifyToken, studentController.get);
+router.post('/', parser, verifyToken, studentController.create);
+router.put('/:id', parser, verifyToken, studentController.update);
+router.delete('/:id', verifyToken, studentController.delete);
 
 module.exports = router;

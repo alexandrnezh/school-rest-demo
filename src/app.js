@@ -7,10 +7,12 @@ const teacherRouter = require('./routes/teacher/index');
 const classroomRouter = require('./routes/classroom/index');
 const groupRouter = require('./routes/group/index');
 const lessonRouter = require('./routes/lesson/index');
+const authRouter = require('./routes/auth/index');
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+app.use('/auth', authRouter);
 app.use('/students', studentRouter);
 app.use('/teachers', teacherRouter);
 app.use('/classrooms', classroomRouter);

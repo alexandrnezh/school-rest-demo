@@ -1,4 +1,5 @@
 const lessonService = require('../db/services/lesson.service');
+const logger = require('../helpers/logger.helper');
 
 exports.getAll = async (req, resp) => {
   const {
@@ -9,6 +10,7 @@ exports.getAll = async (req, resp) => {
     groupId,
     classroomId,
   } = req.query;
+  logger.log('info', 'Lesson controller: getAll >');
 
   const res = await lessonService.getAll(
     topic,
@@ -24,6 +26,7 @@ exports.getAll = async (req, resp) => {
 
 exports.get = async (req, resp) => {
   const { id } = req.params;
+  logger.log('info', 'Lesson controller: get >');
 
   const res = await lessonService.get(id);
   if (!res) return resp.status(404).send({ code: 404, message: 'Not Found' });
@@ -31,6 +34,8 @@ exports.get = async (req, resp) => {
 };
 
 exports.create = async (req, resp) => {
+  logger.log('info', 'Lesson controller: create >');
+
   const res = await lessonService.create(req.body);
   if (!res) return resp.status(400).send({ code: 400, message: 'Bad Request' });
   return resp.status(201).send(res);
@@ -38,6 +43,7 @@ exports.create = async (req, resp) => {
 
 exports.delete = async (req, resp) => {
   const { id } = req.params;
+  logger.log('info', 'Lesson controller: delete >');
 
   const res = await lessonService.delete(id);
   if (!res) return resp.status(400).send({ code: 400, message: 'Bad Request' });
@@ -46,6 +52,7 @@ exports.delete = async (req, resp) => {
 
 exports.update = async (req, resp) => {
   const { id } = req.params;
+  logger.log('info', 'Lesson controller: update >');
 
   const res = await lessonService.update(id, req.body);
   if (!res) return resp.status(400).send({ code: 400, message: 'Bad Request' });

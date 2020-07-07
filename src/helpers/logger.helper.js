@@ -1,6 +1,13 @@
+const fs = require('fs');
+
+const dir = './logs';
+if (!fs.existsSync(dir)) {
+  fs.mkdirSync(dir);
+}
+
 const opts = {
   errorEventName: 'error',
-  logDirectory: `./src/logs`, // NOTE: folder must exist and be writable...
+  logDirectory: './logs',
   fileNamePattern: 'roll-<DATE>.log',
   dateFormat: 'YYYY.MM.DD',
 };

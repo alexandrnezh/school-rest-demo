@@ -18,7 +18,7 @@ exports.getAll = async (
         $lte: numberOfStudentsLte,
       },
     }).populate('_curator_id');
-    logger.log('info', `Group service: getAll > ${res}`);
+    logger.log('info', `Group service: getAll > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', `Group service: getAll > ${err}`);
@@ -29,7 +29,7 @@ exports.getAll = async (
 exports.get = async (id) => {
   try {
     const res = await Group.findById(id).populate('_curator_id');
-    logger.log('info', `Group service: get > ${res}`);
+    logger.log('info', `Group service: get > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', `Group service: get > ${err}`);
@@ -40,7 +40,7 @@ exports.get = async (id) => {
 exports.create = async (groupData) => {
   try {
     const res = await Group.create(groupData);
-    logger.log('info', `Group service: create > ${res}`);
+    logger.log('info', `Group service: create > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', `Group service: create > ${err}`);
@@ -51,7 +51,7 @@ exports.create = async (groupData) => {
 exports.delete = async (id) => {
   try {
     const res = await Group.findByIdAndDelete(id);
-    logger.log('info', `Group service: delete > ${res}`);
+    logger.log('info', `Group service: delete > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', `Group service: delete > ${err}`);
@@ -62,7 +62,7 @@ exports.delete = async (id) => {
 exports.update = async (id, groupData) => {
   try {
     const res = await Group.findByIdAndUpdate(id, groupData);
-    logger.log('info', `Group service: update > ${res}`);
+    logger.log('info', `Group service: update > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', `Group service: update > ${err}`);

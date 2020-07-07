@@ -10,7 +10,7 @@ exports.getAll = async (status, lastName, postalCode, phoneNumber, groupId) => {
       phone_number: phoneNumber,
       _group_id: groupId,
     }).populate('_group_id');
-    logger.log('info', `Student service: getAll > ${res}`);
+    logger.log('info', `Student service: getAll > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', `Student service: getAll > ${err}`);
@@ -21,7 +21,7 @@ exports.getAll = async (status, lastName, postalCode, phoneNumber, groupId) => {
 exports.get = async (id) => {
   try {
     const res = await Student.findById(id).populate('_group_id');
-    logger.log('info', `Student service: get > ${res}`);
+    logger.log('info', `Student service: get > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', `Student service: get > ${err}`);
@@ -32,7 +32,7 @@ exports.get = async (id) => {
 exports.create = async (studentData) => {
   try {
     const res = await Student.create(studentData);
-    logger.log('info', `Student service: create > ${res}`);
+    logger.log('info', `Student service: create > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', `Student service: create > ${err}`);
@@ -43,7 +43,7 @@ exports.create = async (studentData) => {
 exports.delete = async (id) => {
   try {
     const res = await Student.findByIdAndDelete(id);
-    logger.log('info', `Student service: delete > ${res}`);
+    logger.log('info', `Student service: delete > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', `Student service: delete > ${err}`);
@@ -54,7 +54,7 @@ exports.delete = async (id) => {
 exports.update = async (id, studentData) => {
   try {
     const res = await Student.findByIdAndUpdate(id, studentData);
-    logger.log('info', `Student service: update > ${res}`);
+    logger.log('info', `Student service: update > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', `Student service: update > ${err}`);

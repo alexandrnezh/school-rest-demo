@@ -7,7 +7,7 @@ exports.getAll = async (status, name) => {
       status,
       name,
     });
-    logger.log('info', `Classroom service: getAll > ${res}`);
+    logger.log('info', `Classroom service: getAll > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', err);
@@ -18,7 +18,7 @@ exports.getAll = async (status, name) => {
 exports.get = async (id) => {
   try {
     const res = await Classroom.findById(id);
-    logger.log('info', `Classroom service: get > ${res}`);
+    logger.log('info', `Classroom service: get > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', err);
@@ -29,7 +29,7 @@ exports.get = async (id) => {
 exports.create = async (classroomData) => {
   try {
     const res = await Classroom.create(classroomData);
-    logger.log('info', `Classroom service: create > ${res}`);
+    logger.log('info', `Classroom service: create > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', err);
@@ -40,7 +40,7 @@ exports.create = async (classroomData) => {
 exports.delete = async (id) => {
   try {
     const res = await Classroom.findByIdAndDelete(id);
-    logger.log('info', `Classroom service: delete > ${res}`);
+    logger.log('info', `Classroom service: delete > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', err);
@@ -51,7 +51,7 @@ exports.delete = async (id) => {
 exports.update = async (id, classroomData) => {
   try {
     const res = await Classroom.findByIdAndUpdate(id, classroomData);
-    logger.log('info', `Classroom service: update > ${res}`);
+    logger.log('info', `Classroom service: update > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', err);

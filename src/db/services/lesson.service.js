@@ -21,7 +21,7 @@ exports.getAll = async (
       .populate('_teacher_id')
       .populate('_group_id')
       .populate('_classroom_id');
-    logger.log('info', `Lesson service: getAll > ${res}`);
+    logger.log('info', `Lesson service: getAll > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', `Lesson service: getAll > ${err}`);
@@ -35,7 +35,7 @@ exports.get = async (id) => {
       .populate('_teacher_id')
       .populate('_group_id')
       .populate('_classroom_id');
-    logger.log('info', `Lesson service: get > ${res}`);
+    logger.log('info', `Lesson service: get > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', `Lesson service: get > ${err}`);
@@ -46,7 +46,7 @@ exports.get = async (id) => {
 exports.create = async (lessonData) => {
   try {
     const res = await Lesson.create(lessonData);
-    logger.log('info', `Lesson service: create > ${res}`);
+    logger.log('info', `Lesson service: create > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', `Lesson service: create > ${err}`);
@@ -57,7 +57,7 @@ exports.create = async (lessonData) => {
 exports.delete = async (id) => {
   try {
     const res = await Lesson.findByIdAndDelete(id);
-    logger.log('info', `Lesson service: delete > ${res}`);
+    logger.log('info', `Lesson service: delete > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', `Lesson service: delete > ${err}`);
@@ -68,7 +68,7 @@ exports.delete = async (id) => {
 exports.update = async (id, lessonData) => {
   try {
     const res = await Lesson.findByIdAndUpdate(id, lessonData);
-    logger.log('info', `Lesson service: update > ${res}`);
+    logger.log('info', `Lesson service: update > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', `Lesson service: update > ${err}`);

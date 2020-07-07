@@ -9,7 +9,7 @@ exports.getAll = async (status, lastName, postalCode, phoneNumber) => {
       postal_code: postalCode,
       phone_number: phoneNumber,
     });
-    logger.log('info', `Teacher service: getAll > ${res}`);
+    logger.log('info', `Teacher service: getAll > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', `Teacher service: getAll > ${err}`);
@@ -49,7 +49,7 @@ exports.getAllByLastName = async (lastName) => {
 exports.get = async (id) => {
   try {
     const res = await Teacher.findById(id);
-    logger.log('info', `Teacher service: get > ${res}`);
+    logger.log('info', `Teacher service: get > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', `Teacher service: get > ${err}`);
@@ -60,7 +60,7 @@ exports.get = async (id) => {
 exports.create = async (teacherData) => {
   try {
     const res = await Teacher.create(teacherData);
-    logger.log('info', `Teacher service: create > ${res}`);
+    logger.log('info', `Teacher service: create > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', `Teacher service: create > ${err}`);
@@ -71,7 +71,7 @@ exports.create = async (teacherData) => {
 exports.delete = async (id) => {
   try {
     const res = await Teacher.findByIdAndDelete(id);
-    logger.log('info', `Teacher service: delete > ${res}`);
+    logger.log('info', `Teacher service: delete > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', `Teacher service: delete > ${err}`);
@@ -82,7 +82,7 @@ exports.delete = async (id) => {
 exports.update = async (id, teacherData) => {
   try {
     const res = await Teacher.findByIdAndUpdate(id, teacherData);
-    logger.log('info', `Teacher service: update > ${res}`);
+    logger.log('info', `Teacher service: update > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
     logger.log('error', `Teacher service: update > ${err}`);

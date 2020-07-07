@@ -1,4 +1,5 @@
 const Lesson = require('../../models/lesson.model');
+const logger = require('../../helpers/logger.helper');
 
 exports.getAll = async (
   topic,
@@ -20,9 +21,10 @@ exports.getAll = async (
       .populate('_teacher_id')
       .populate('_group_id')
       .populate('_classroom_id');
+    logger.log('info', `Lesson service: getAll > ${res}`);
     return res;
   } catch (err) {
-    console.log(err);
+    logger.log('error', `Lesson service: getAll > ${err}`);
   }
   return null;
 };
@@ -33,9 +35,10 @@ exports.get = async (id) => {
       .populate('_teacher_id')
       .populate('_group_id')
       .populate('_classroom_id');
+    logger.log('info', `Lesson service: get > ${res}`);
     return res;
   } catch (err) {
-    console.log(err);
+    logger.log('error', `Lesson service: get > ${err}`);
   }
   return null;
 };
@@ -43,9 +46,10 @@ exports.get = async (id) => {
 exports.create = async (lessonData) => {
   try {
     const res = await Lesson.create(lessonData);
+    logger.log('info', `Lesson service: create > ${res}`);
     return res;
   } catch (err) {
-    console.log(err);
+    logger.log('error', `Lesson service: create > ${err}`);
   }
   return null;
 };
@@ -53,9 +57,10 @@ exports.create = async (lessonData) => {
 exports.delete = async (id) => {
   try {
     const res = await Lesson.findByIdAndDelete(id);
+    logger.log('info', `Lesson service: delete > ${res}`);
     return res;
   } catch (err) {
-    console.log(err);
+    logger.log('error', `Lesson service: delete > ${err}`);
   }
   return null;
 };
@@ -63,9 +68,10 @@ exports.delete = async (id) => {
 exports.update = async (id, lessonData) => {
   try {
     const res = await Lesson.findByIdAndUpdate(id, lessonData);
+    logger.log('info', `Lesson service: update > ${res}`);
     return res;
   } catch (err) {
-    console.log(err);
+    logger.log('error', `Lesson service: update > ${err}`);
   }
   return null;
 };

@@ -1,4 +1,5 @@
 const Group = require('../../models/group.model');
+const logger = require('../../helpers/logger.helper');
 
 exports.getAll = async (
   status,
@@ -17,9 +18,10 @@ exports.getAll = async (
         $lte: numberOfStudentsLte,
       },
     }).populate('_curator_id');
+    logger.log('info', `Group service: getAll > ${res}`);
     return res;
   } catch (err) {
-    console.log(err);
+    logger.log('error', `Group service: getAll > ${err}`);
   }
   return null;
 };
@@ -27,9 +29,10 @@ exports.getAll = async (
 exports.get = async (id) => {
   try {
     const res = await Group.findById(id).populate('_curator_id');
+    logger.log('info', `Group service: get > ${res}`);
     return res;
   } catch (err) {
-    console.log(err);
+    logger.log('error', `Group service: get > ${err}`);
   }
   return null;
 };
@@ -37,9 +40,10 @@ exports.get = async (id) => {
 exports.create = async (groupData) => {
   try {
     const res = await Group.create(groupData);
+    logger.log('info', `Group service: create > ${res}`);
     return res;
   } catch (err) {
-    console.log(err);
+    logger.log('error', `Group service: create > ${err}`);
   }
   return null;
 };
@@ -47,9 +51,10 @@ exports.create = async (groupData) => {
 exports.delete = async (id) => {
   try {
     const res = await Group.findByIdAndDelete(id);
+    logger.log('info', `Group service: delete > ${res}`);
     return res;
   } catch (err) {
-    console.log(err);
+    logger.log('error', `Group service: delete > ${err}`);
   }
   return null;
 };
@@ -57,9 +62,10 @@ exports.delete = async (id) => {
 exports.update = async (id, groupData) => {
   try {
     const res = await Group.findByIdAndUpdate(id, groupData);
+    logger.log('info', `Group service: update > ${res}`);
     return res;
   } catch (err) {
-    console.log(err);
+    logger.log('error', `Group service: update > ${err}`);
   }
   return null;
 };

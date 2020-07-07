@@ -8,6 +8,7 @@ const classroomRouter = require('./routes/classroom/index');
 const groupRouter = require('./routes/group/index');
 const lessonRouter = require('./routes/lesson/index');
 const authRouter = require('./routes/auth/index');
+const logger = require('./helpers/logger.helper');
 
 const app = express();
 app.use(cors());
@@ -20,5 +21,5 @@ app.use('/groups', groupRouter);
 app.use('/lessons', lessonRouter);
 
 app.listen(PORT, () => {
-  console.log('Server has started on port ', PORT);
+  logger.log('info', `Server has started on port ${PORT}`);
 });

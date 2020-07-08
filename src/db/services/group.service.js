@@ -1,23 +1,11 @@
 const Group = require('../../models/group.model');
 const logger = require('../../helpers/logger.helper');
+const { getQuery } = require('../../helpers/query.helper');
 
-exports.getAll = async (
-  status,
-  name,
-  curatorId,
-  numberOfStudentsGte,
-  numberOfStudentsLte,
-) => {
+exports.getAll = async (queryParams) => {
+  const dbQuery = getQuery(queryParams);
   try {
-    const res = await Group.find({
-      status,
-      name,
-      _curator_id: curatorId,
-      number_of_student: {
-        $gte: numberOfStudentsGte,
-        $lte: numberOfStudentsLte,
-      },
-    }).populate('_curator_id');
+    const res = await Group.find(dbQuery).populate('_curator_id');
     logger.log('info', `Group service: getAll > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {

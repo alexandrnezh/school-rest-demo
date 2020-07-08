@@ -1,12 +1,11 @@
 const Classroom = require('../../models/classroom.model');
 const logger = require('../../helpers/logger.helper');
+const { getQuery } = require('../../helpers/query.helper');
 
-exports.getAll = async (status, name) => {
+exports.getAll = async (queryParams) => {
+  const dbQuery = getQuery(queryParams);
   try {
-    const res = await Classroom.find({
-      status,
-      name,
-    });
+    const res = await Classroom.find(dbQuery);
     logger.log('info', `Classroom service: getAll > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {

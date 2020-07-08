@@ -1,14 +1,13 @@
+/* eslint-disable no-param-reassign */
 const Teacher = require('../../models/teacher.model');
 const logger = require('../../helpers/logger.helper');
+const { parseStringToDate } = require('../../helpers/date.helper');
+const { getQuery } = require('../../helpers/query.helper');
 
-exports.getAll = async (status, lastName, postalCode, phoneNumber) => {
+exports.getAll = async (queryParams) => {
+  const dbQuery = getQuery(queryParams);
   try {
-    const res = await Teacher.find({
-      status,
-      last_name: lastName,
-      postal_code: postalCode,
-      phone_number: phoneNumber,
-    });
+    const res = await Teacher.find(dbQuery);
     logger.log('info', `Teacher service: getAll > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
@@ -58,6 +57,7 @@ exports.get = async (id) => {
 };
 
 exports.create = async (teacherData) => {
+  teacherData.birth_date = parseStringToDate(teacherData.birth_date);
   try {
     const res = await Teacher.create(teacherData);
     logger.log('info', `Teacher service: create > ${JSON.stringify(res)}`);
@@ -80,6 +80,7 @@ exports.delete = async (id) => {
 };
 
 exports.update = async (id, teacherData) => {
+  teacherData.birth_date = parseStringToDate(teacherData.birth_date);
   try {
     const res = await Teacher.findByIdAndUpdate(id, teacherData);
     logger.log('info', `Teacher service: update > ${JSON.stringify(res)}`);

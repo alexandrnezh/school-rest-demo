@@ -1,15 +1,13 @@
+/* eslint-disable no-param-reassign */
 const Student = require('../../models/student.model');
 const logger = require('../../helpers/logger.helper');
+const { parseStringToDate } = require('../../helpers/date.helper');
+const { getQuery } = require('../../helpers/query.helper');
 
-exports.getAll = async (status, lastName, postalCode, phoneNumber, groupId) => {
+exports.getAll = async (queryParams) => {
+  const dbQuery = getQuery(queryParams);
   try {
-    const res = await Student.find({
-      status,
-      last_name: lastName,
-      postal_code: postalCode,
-      phone_number: phoneNumber,
-      _group_id: groupId,
-    }).populate('_group_id');
+    const res = await Student.find(dbQuery).populate('_group_id');
     logger.log('info', `Student service: getAll > ${JSON.stringify(res)}`);
     return res;
   } catch (err) {
@@ -30,6 +28,7 @@ exports.get = async (id) => {
 };
 
 exports.create = async (studentData) => {
+  studentData.birth_date = parseStringToDate(studentData.birth_date);
   try {
     const res = await Student.create(studentData);
     logger.log('info', `Student service: create > ${JSON.stringify(res)}`);
@@ -52,6 +51,7 @@ exports.delete = async (id) => {
 };
 
 exports.update = async (id, studentData) => {
+  studentData.birth_date = parseStringToDate(studentData.birth_date);
   try {
     const res = await Student.findByIdAndUpdate(id, studentData);
     logger.log('info', `Student service: update > ${JSON.stringify(res)}`);

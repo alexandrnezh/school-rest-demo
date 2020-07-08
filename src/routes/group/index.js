@@ -4,6 +4,7 @@ const { verifyToken } = require('../../middlewares/auth.middleware');
 
 const groupController = require('../../controllers/group.controller');
 
+// Acceptable search query params: topic, status, name, _curator_id, number_of_students_gte, number_of_students_lte
 router.get('/', verifyToken, groupController.getAll);
 router.get('/:id', verifyToken, groupController.get);
 router.post('/', parser, verifyToken, groupController.create);

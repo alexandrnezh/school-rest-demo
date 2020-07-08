@@ -4,6 +4,7 @@ const { verifyToken } = require('../../middlewares/auth.middleware');
 
 const classroomController = require('../../controllers/classroom.controller');
 
+// Acceptable search query params: topic, status, name
 router.get('/', verifyToken, classroomController.getAll);
 router.get('/:id', verifyToken, classroomController.get);
 router.post('/', parser, verifyToken, classroomController.create);

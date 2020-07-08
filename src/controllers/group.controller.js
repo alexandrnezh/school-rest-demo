@@ -2,22 +2,10 @@ const groupService = require('../db/services/group.service');
 const logger = require('../helpers/logger.helper');
 
 exports.getAll = async (req, resp) => {
-  const {
-    status,
-    name,
-    curatorId,
-    numberOfStudentsGte,
-    numberOfStudentsLte,
-  } = req.query;
+  const queryParams = req.query;
   logger.log('info', 'Group controller: getAll >');
 
-  const res = await groupService.getAll(
-    status,
-    name,
-    curatorId,
-    numberOfStudentsGte,
-    numberOfStudentsLte,
-  );
+  const res = await groupService.getAll(queryParams);
   if (!res) return resp.status(404).send({ code: 404, message: 'Not Found' });
   return resp.status(200).send(res);
 };

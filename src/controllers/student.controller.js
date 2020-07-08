@@ -2,16 +2,10 @@ const studentService = require('../db/services/student.service');
 const logger = require('../helpers/logger.helper');
 
 exports.getAll = async (req, resp) => {
-  const { status, lastName, postalCode, phoneNumber, groupId } = req.query;
+  const queryParams = req.query;
   logger.log('info', 'Student controller: getAll >');
 
-  const res = await studentService.getAll(
-    status,
-    lastName,
-    postalCode,
-    phoneNumber,
-    groupId,
-  );
+  const res = await studentService.getAll(queryParams);
   if (!res) return resp.status(400).send({ code: 404, message: 'Not Found' });
   return resp.status(200).send(res);
 };

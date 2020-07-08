@@ -2,15 +2,10 @@ const teacherService = require('../db/services/teacher.service');
 const logger = require('../helpers/logger.helper');
 
 exports.getAll = async (req, resp) => {
-  const { status, lastName, postalCode, phoneNumber } = req.query;
+  const queryParams = req.query;
   logger.log('info', 'Teacher controller: getAll >');
 
-  const res = await teacherService.getAll(
-    status,
-    lastName,
-    postalCode,
-    phoneNumber,
-  );
+  const res = await teacherService.getAll(queryParams);
   if (!res) return resp.status(400).send({ code: 404, message: 'Not Found' });
   return resp.status(200).send(res);
 };

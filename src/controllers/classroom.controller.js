@@ -2,10 +2,10 @@ const classroomService = require('../db/services/classroom.service');
 const logger = require('../helpers/logger.helper');
 
 exports.getAll = async (req, resp) => {
-  const { status, name } = req.query;
+  const queryParams = req.query;
   logger.log('info', 'Classroom controller: getAll >');
 
-  const res = await classroomService.getAll(status, name);
+  const res = await classroomService.getAll(queryParams);
   if (!res) return resp.status(400).send({ code: 400, message: 'Bad Request' });
   return resp.status(200).send(res);
 };

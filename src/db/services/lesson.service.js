@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 const Lesson = require('../../models/lesson.model');
 const logger = require('../../helpers/logger.helper');
-const { parseStringToDate } = require('../../helpers/date.helper');
 const { getQuery } = require('../../helpers/query.helper');
 
 exports.getAll = async (queryParams) => {
@@ -34,8 +33,6 @@ exports.get = async (id) => {
 };
 
 exports.create = async (lessonData) => {
-  lessonData.start_time = parseStringToDate(lessonData.start_time);
-  lessonData.end_time = parseStringToDate(lessonData.end_time);
   try {
     const res = await Lesson.create(lessonData);
     logger.log('info', `Lesson service: create > ${JSON.stringify(res)}`);

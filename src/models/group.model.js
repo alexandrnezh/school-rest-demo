@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const groupSchema = new Schema({
   name: { type: mongoose.SchemaTypes.String, required: true },
-  number_of_student: { type: mongoose.SchemaTypes.Number, required: true },
+  number_of_students: { type: mongoose.SchemaTypes.Number, required: true },
   status: { type: mongoose.SchemaTypes.String, required: true },
   _curator_id: { type: mongoose.SchemaTypes.ObjectId, ref: 'teacher' },
 });
